@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, models } from 'mongoose';
 
 const schema = new Schema({
   projectTypeName: { type: String, required: true },

@@ -1,7 +1,7 @@
 import connectDB from '@/mongo/connection';
 import ProjectType from '@/mongo/models/ProjectsModel';
 
-const getProjects = async () => {
+const getProjectTypes = async () => {
   try {
     await connectDB();
     const res = await ProjectType.find({});
@@ -10,4 +10,4 @@ const getProjects = async () => {
   } catch (error) {}
 };
 
-export default getProjects;
+export default getProjectTypes;

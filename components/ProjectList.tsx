@@ -1,19 +1,19 @@
 import React from 'react';
-import getProjects from '@/utils/getProjects';
+import getProjectTypes from '@/utils/getProjectTypes';
 import SubList from './SubList';
 import ProjectProps from '@/types/ProjectProps';
 
 export default async function ProjectList() {
-  const data = await getProjects();
+  const projectTypes = await getProjectTypes();
 
   return (
-    <div>
-      {data?.map(({ projects, _id, projectTypeName }: ProjectProps) => {
+    <div className="flex gap-2 ml-2">
+      {projectTypes?.map(({ _id, projectTypeName, projects }: ProjectProps) => {
         return (
           <SubList
-            projects={projects}
             _id={_id}
             projectTypeName={projectTypeName}
+            projects={projects}
           />
         );
       })}

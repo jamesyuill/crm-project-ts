@@ -1,9 +1,10 @@
-import ProjectList from '@/components/ProjectList';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <main>
-      <ProjectList />
+      <h1>Home</h1>
+      <Link href="/dashboard">Dashboard</Link>
     </main>
   );
 }
