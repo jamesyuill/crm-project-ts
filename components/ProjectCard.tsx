@@ -1,17 +1,17 @@
 import React from 'react';
 
 type Project = {
-  projects: {
+  project: {
     projectTitle: string;
     projectDesc: string;
     projectImages?: string[];
   };
 };
 
-export default function ProjectCard({ projects }: Project) {
+export default function ProjectCard({ project }: Project) {
   return (
     <div>
-      <h2>{projects.projectTitle}</h2>
+      <h2>{project.projectTitle}</h2>
     </div>
   );
 }

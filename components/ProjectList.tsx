@@ -11,6 +11,7 @@ export default async function ProjectList() {
       {projectTypes?.map(({ _id, projectTypeName, projects }: ProjectProps) => {
         return (
           <SubList
+            key={_id}
             _id={_id}
             projectTypeName={projectTypeName}
             projects={projects}
