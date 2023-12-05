@@ -34,7 +34,7 @@ export default function LoginForm() {
     <main className="flex flex-col justify-center align-center  h-[90vh] ml-[35%]">
       <div className="flex flex-col gap-3 border-solid border-2 border-slate-600 w-[300px] p-3 ">
         <div className="mb-4">
-          <h2>Login</h2>
+          <h2 className="font-medium">Login</h2>
           <form
             onSubmit={handleSubmit}
             className="flex flex-col w-[100%]  gap-3"
@@ -42,7 +42,7 @@ export default function LoginForm() {
             <label htmlFor="email">Email:</label>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              className="border-solid border-1 border-slate-700 p-[0.2rem]"
+              className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
               type="email"
               id="email"
               placeholder="john.smith@example.com"
@@ -52,7 +52,7 @@ export default function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
-              className="border-solid border-1 border-slate-300 p-[0.2rem]"
+              className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
             />
             <button
               type="submit"

@@ -58,7 +58,7 @@ export default function SignUpForm() {
     <div className="flex flex-col justify-center align-center h-[90vh] ml-[35%]">
       <div className="flex flex-col gap-3 border-solid border-2 border-slate-600 w-[300px] p-3 ">
         <div className="mb-4">
-          <h2>Sign Up</h2>
+          <h2 className="font-medium">Sign Up</h2>
           <form
             ref={formRef}
             className="flex flex-col w-[100%]  gap-3"
@@ -66,7 +66,7 @@ export default function SignUpForm() {
           >
             <label htmlFor="fullName">Full Name:</label>
             <input
-              className="border-solid border-1 border-slate-700 p-[0.2rem]"
+              className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
               type="text"
               id="fullName"
               placeholder="John Smith"
@@ -75,7 +75,7 @@ export default function SignUpForm() {
 
             <label htmlFor="email">Email:</label>
             <input
-              className="border-solid border-1 border-slate-700 p-[0.2rem]"
+              className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
               type="email"
               id="email"
               placeholder="john.smith@example.com"
@@ -85,7 +85,7 @@ export default function SignUpForm() {
             <input
               type="password"
               id="password"
-              className="border-solid border-1 border-slate-300 p-[0.2rem]"
+              className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
               onChange={(e) => setPassword(e.target.value)}
             />
             <button
