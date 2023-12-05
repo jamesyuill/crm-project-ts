@@ -1,25 +1,14 @@
 import connectDB from '@/mongo/connection';
 import ProjectType from '@/mongo/models/ProjectsModel';
+import Project from '@/types/Project';
 
-const addProject = async () => {
-  let newDoc = {
-    projectTypeName: 'House',
-    projects: [
-      {
-        projectTitle: 'clean',
-        projectDesc: 'clean up house',
-        projectImages: ['someimage', 'someimage2'],
-      },
-    ],
-  };
-
+const addProject = async (params: Project) => {
   try {
     await connectDB();
-    await ProjectType.create(newDoc);
+    await ProjectType.create(params);
   } catch (error) {
     console.log('there was a problem in addProject');
   }
 };
 
-addProject();
 export default addProject;

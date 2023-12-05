@@ -1,17 +1,26 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProjectCard from './ProjectCard';
 import Project from '@/types/Project';
 import AddProjectButton from './AddProjectButton';
 
-export default function Todos({ projectTypeName, parsedProjects }: any) {
+export default function Todos({
+  plainID,
+  projectTypeName,
+  parsedProjects,
+}: any) {
   const [isCardShowing, setIsCardShowing] = useState(false);
   const [cardContents, setCardContents] = useState<Project>({
     projectTitle: '',
     projectDesc: '',
     projectImages: [],
   });
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    setProjects(parsedProjects);
+  }, []);
 
   const handleClick = (item: Project) => {
     setIsCardShowing(true);
@@ -27,7 +36,7 @@ export default function Todos({ projectTypeName, parsedProjects }: any) {
   return (
     <>
       <div className="flex flex-col gap-3 mt-4">
-        {parsedProjects.map((item: Project) => {
+        {projects.map((item: Project) => {
           return (
             <div
               onClick={() => handleClick(item)}
@@ -38,7 +47,12 @@ export default function Todos({ projectTypeName, parsedProjects }: any) {
             </div>
           );
         })}
-        <AddProjectButton projectTypeName={projectTypeName} />
+        <AddProjectButton
+          plainID={plainID}
+          projectTypeName={projectTypeName}
+          projects={projects}
+          setProjects={setProjects}
+        />
       </div>
 
       {isCardShowing && (

@@ -10,13 +10,14 @@ export default function SubList({
 }: ProjectProps) {
   const stringify = JSON.stringify(projects);
   const parsedProjects = JSON.parse(stringify);
-
+  const plainID = JSON.parse(JSON.stringify(_id));
   return (
     <section className="border-2 border-slate-300 p-3 w-[30%]">
       <h1 className="font-semibold">{projectTypeName}</h1>
 
       {projects && (
         <Todos
+          plainID={plainID}
           projectTypeName={projectTypeName}
           parsedProjects={parsedProjects}
         />

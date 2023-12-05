@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import NewProjectModal from './NewProjectModal';
+import Project from '@/types/Project';
 
 type Props = {
+  plainID: string;
+  projects: Project[];
   projectTypeName: string;
+  setProjects: Function;
 };
 
-export default function NewProjectButton({ projectTypeName }: Props) {
+export default function NewProjectButton({
+  plainID,
+  projects,
+  setProjects,
+  projectTypeName,
+}: Props) {
   const [isAddNewShowing, setIsAddNewShowing] = useState(false);
 
   const handleClick = () => {
@@ -24,6 +33,9 @@ export default function NewProjectButton({ projectTypeName }: Props) {
 
       {isAddNewShowing && (
         <NewProjectModal
+          plainID={plainID}
+          projects={projects}
+          setProjects={setProjects}
           projectTypeName={projectTypeName}
           setIsAddNewShowing={setIsAddNewShowing}
         />

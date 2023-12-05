@@ -1,24 +1,49 @@
 'use client';
-import React, { useState } from 'react';
+
+import Project from '@/types/Project';
+import addProject from '@/utils/addProject';
+import React, { useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 
 type Props = {
+  plainID: string;
   projectTypeName: string;
   setIsAddNewShowing: Function;
+  projects: Project[];
+  setProjects: Function;
 };
 
 export default function NewProjectModal({
+  plainID,
+  projects,
   projectTypeName,
   setIsAddNewShowing,
+  setProjects,
 }: Props) {
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
-
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    //add projectinfo to the array optimistically
-    //send it off to the database
-    //set modal display to false
+    let newObj = {
+      projectTitle: projectDesc,
+      projectDesc: projectDesc,
+    };
+    setProjects((curr: any) => {
+      let newArr = [...curr, newObj];
+
+      return newArr;
+    });
+
+    setIsAddNewShowing(false);
+
+    // send off to mongo
+    try {
+      const res = await fetch('api/addProject', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plainID, newObj }),
+      });
+    } catch (error) {}
   };
 
   return (
@@ -40,6 +65,7 @@ export default function NewProjectModal({
             value={projectTitle}
             onChange={(e) => setProjectTitle(e.target.value)}
             className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
+            autoFocus
             type="text"
             name="project-title"
             id="project-title"
