@@ -15,7 +15,12 @@ export default function SubList({
     <section className="border-2 border-slate-300 p-3 w-[30%]">
       <h1 className="font-semibold">{projectTypeName}</h1>
 
-      {projects && <Todos parsedProjects={parsedProjects} />}
+      {projects && (
+        <Todos
+          projectTypeName={projectTypeName}
+          parsedProjects={parsedProjects}
+        />
+      )}
     </section>
   );
 }

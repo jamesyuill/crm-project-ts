@@ -5,7 +5,7 @@ import ProjectCard from './ProjectCard';
 import Project from '@/types/Project';
 import AddProjectButton from './AddProjectButton';
 
-export default function Todos({ parsedProjects }: any) {
+export default function Todos({ projectTypeName, parsedProjects }: any) {
   const [isCardShowing, setIsCardShowing] = useState(false);
   const [cardContents, setCardContents] = useState<Project>({
     projectTitle: '',
@@ -38,7 +38,7 @@ export default function Todos({ parsedProjects }: any) {
             </div>
           );
         })}
-        <AddProjectButton />
+        <AddProjectButton projectTypeName={projectTypeName} />
       </div>
 
       {isCardShowing && (
