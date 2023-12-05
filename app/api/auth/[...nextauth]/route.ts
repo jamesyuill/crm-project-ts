@@ -7,9 +7,9 @@ import connectDB from '@/mongo/connection';
 import User from '@/mongo/models/UserModel';
 
 type Credentials = {
-  name: String;
-  email: String;
-  password: String;
+  name: string;
+  email: string;
+  password: string;
 };
 
 const authOptions: AuthOptions = {

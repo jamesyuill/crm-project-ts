@@ -1,10 +1,13 @@
 import React from 'react';
 import Project from '@/types/Project';
+import { IoMdClose } from 'react-icons/io';
 
-export default function ProjectCard({
-  setIsCardShowing,
-  cardContents,
-}: Project) {
+interface Props {
+  cardContents: Project;
+  setIsCardShowing: Function;
+}
+
+export default function ProjectCard({ setIsCardShowing, cardContents }: Props) {
   return (
     <div
       id="container-background"
@@ -15,7 +18,7 @@ export default function ProjectCard({
           onClick={() => setIsCardShowing(false)}
           className="flex justify-end w-[100%] p-1 cursor-pointer"
         >
-          X
+          <IoMdClose size={20} />
         </div>
         <h2 className="font-medium">{cardContents.projectTitle}</h2>
         <p>{cardContents.projectDesc}</p>

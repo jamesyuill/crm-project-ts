@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import ProjectCard from './ProjectCard';
 import Project from '@/types/Project';
+import AddProjectButton from './AddProjectButton';
 
 export default function Todos({ parsedProjects }: any) {
   const [isCardShowing, setIsCardShowing] = useState(false);
@@ -37,6 +38,7 @@ export default function Todos({ parsedProjects }: any) {
             </div>
           );
         })}
+        <AddProjectButton />
       </div>
 
       {isCardShowing && (
