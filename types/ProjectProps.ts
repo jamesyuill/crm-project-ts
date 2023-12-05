@@ -1,4 +1,4 @@
-type ProjectProps = {
+interface ProjectProps {
   _id: string;
   projectTypeName: string;
   projects?: {
@@ -6,6 +6,6 @@ type ProjectProps = {
     projectDesc: string;
     projectimages?: string[];
   }[];
-};
+}
 
 export default ProjectProps;

@@ -9,7 +9,7 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <div className="flex flex-row justify-between items-center h-15 p-5 bg-white/60">
+    <div className="flex flex-row justify-between items-center h-15 p-5 bg-blue-200/60">
       <div id="logo">Project Todo</div>
       <nav className="flex flex-row items-center gap-5">
         {session ? (
