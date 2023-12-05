@@ -14,6 +14,13 @@ export default function NewProjectModal({
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
 
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    //add projectinfo to the array optimistically
+    //send it off to the database
+    //set modal display to false
+  };
+
   return (
     <div
       id="container-background"
@@ -26,8 +33,8 @@ export default function NewProjectModal({
         >
           <IoMdClose size={20} />
         </div>
-        <h2>{projectTypeName}</h2>
-        <form className="flex flex-col gap-2">
+        <h2 className="font-medium">{projectTypeName}</h2>
+        <form className="flex flex-col gap-2 mt-2" onSubmit={handleSubmit}>
           <label htmlFor="project-title">Title: </label>
           <input
             value={projectTitle}

@@ -3,11 +3,16 @@ import Project from '@/types/Project';
 import { IoMdClose } from 'react-icons/io';
 
 interface Props {
+  projectTypeName: string;
   cardContents: Project;
   setIsCardShowing: Function;
 }
 
-export default function ProjectCard({ setIsCardShowing, cardContents }: Props) {
+export default function ProjectCard({
+  projectTypeName,
+  setIsCardShowing,
+  cardContents,
+}: Props) {
   return (
     <div
       id="container-background"
@@ -20,8 +25,11 @@ export default function ProjectCard({ setIsCardShowing, cardContents }: Props) {
         >
           <IoMdClose size={20} />
         </div>
-        <h2 className="font-medium">{cardContents.projectTitle}</h2>
-        <p>{cardContents.projectDesc}</p>
+        <h2 className="font-medium">{projectTypeName}</h2>
+        <div className="flex flex-col gap-2 mt-2">
+          <h2>{cardContents.projectTitle}</h2>
+          <p>{cardContents.projectDesc}</p>
+        </div>
       </div>
     </div>
   );

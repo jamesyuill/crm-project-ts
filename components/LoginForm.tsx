@@ -52,6 +52,7 @@ export default function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
+              placeholder="...shhh!"
               className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
             />
             <button

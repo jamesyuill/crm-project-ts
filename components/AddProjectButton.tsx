@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import NewProjectModal from './NewProjectModal';
 
-export default function NewProjectButton({ projectTypeName }) {
+type Props = {
+  projectTypeName: string;
+};
+
+export default function NewProjectButton({ projectTypeName }: Props) {
   const [isAddNewShowing, setIsAddNewShowing] = useState(false);
 
   const handleClick = () => {
     setIsAddNewShowing(true);
   };
+
   return (
     <>
       <div

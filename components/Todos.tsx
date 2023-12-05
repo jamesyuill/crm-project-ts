@@ -43,6 +43,7 @@ export default function Todos({ projectTypeName, parsedProjects }: any) {
 
       {isCardShowing && (
         <ProjectCard
+          projectTypeName={projectTypeName}
           setIsCardShowing={setIsCardShowing}
           cardContents={cardContents}
         />
