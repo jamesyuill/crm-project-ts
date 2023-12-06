@@ -2,6 +2,7 @@ import React from 'react';
 import getProjectTypes from '@/utils/getProjectTypes';
 import SubList from './SubList';
 import ProjectProps from '@/types/ProjectProps';
+import NewSublistButton from './NewSublistButton';
 
 export default async function ProjectList() {
   const projectTypes = await getProjectTypes();
@@ -18,6 +19,8 @@ export default async function ProjectList() {
           />
         );
       })}
+
+      <NewSublistButton />
     </div>
   );
 }

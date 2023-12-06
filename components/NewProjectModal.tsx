@@ -1,8 +1,6 @@
 'use client';
 
-import Project from '@/types/Project';
-import addProject from '@/utils/addProject';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 
 type Props = {

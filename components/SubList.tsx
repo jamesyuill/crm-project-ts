@@ -12,7 +12,7 @@ export default function SubList({
   const parsedProjects = JSON.parse(stringify);
   const plainID = JSON.parse(JSON.stringify(_id));
   return (
-    <section className="border-2 border-slate-300 p-3 w-[30%]">
+    <section className="border-2 border-slate-300 min-w-[250px] p-3  h-fit">
       <h1 className="font-semibold">{projectTypeName}</h1>
 
       {projects && (
