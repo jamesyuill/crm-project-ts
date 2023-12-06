@@ -5,14 +5,14 @@ import Project from '@/types/Project';
 
 type Props = {
   plainID: string;
-  projects: Project[];
+
   projectTypeName: string;
   setProjects: Function;
 };
 
 export default function NewProjectButton({
   plainID,
-  projects,
+
   setProjects,
   projectTypeName,
 }: Props) {
@@ -34,7 +34,6 @@ export default function NewProjectButton({
       {isAddNewShowing && (
         <NewProjectModal
           plainID={plainID}
-          projects={projects}
           setProjects={setProjects}
           projectTypeName={projectTypeName}
           setIsAddNewShowing={setIsAddNewShowing}

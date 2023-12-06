@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
+  const { data: session, status } = useSession();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -30,6 +31,10 @@ export default function LoginForm() {
     }
   };
 
+  if (status === 'authenticated') {
+    router.replace('dashboard');
+  }
+
   return (
     <main className="flex flex-col justify-center align-center  h-[90vh] ml-[35%]">
       <div className="flex flex-col gap-3 border-solid border-2 border-slate-600 w-[300px] p-3 ">
@@ -52,7 +57,7 @@ export default function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
-              placeholder="...shhh!"
+              placeholder="password"
               className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
             />
             <button

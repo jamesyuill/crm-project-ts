@@ -12,6 +12,7 @@ export default function Todos({
 }: any) {
   const [isCardShowing, setIsCardShowing] = useState(false);
   const [cardContents, setCardContents] = useState<Project>({
+    _id: '',
     projectTitle: '',
     projectDesc: '',
     projectImages: [],
@@ -50,13 +51,14 @@ export default function Todos({
         <AddProjectButton
           plainID={plainID}
           projectTypeName={projectTypeName}
-          projects={projects}
           setProjects={setProjects}
         />
       </div>
 
       {isCardShowing && (
         <ProjectCard
+          plainID={plainID}
+          setProjects={setProjects}
           projectTypeName={projectTypeName}
           setIsCardShowing={setIsCardShowing}
           cardContents={cardContents}

@@ -1,24 +1,20 @@
 import connectDB from '@/mongo/connection';
 import ProjectType from '@/mongo/models/ProjectsModel';
-import mongoose from 'mongoose';
 import { NextRequest } from 'next/server';
 
-export async function POST(req: NextRequest) {
-  const { plainID, newObj } = await req.json();
-  const projectWithId = {
-    ...newObj,
-    _id: new mongoose.mongo.ObjectId(),
-  };
+export async function DELETE(req: NextRequest) {
+  const { plainID, cardContents } = await req.json();
 
   await connectDB();
   const res = await ProjectType.findByIdAndUpdate(
     { _id: plainID },
     {
-      $push: {
-        projects: projectWithId,
+      $pull: {
+        projects: { _id: cardContents._id },
       },
     }
   );
 
+  console.log(res);
   return Response.json(res);
 }

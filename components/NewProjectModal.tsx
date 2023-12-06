@@ -9,13 +9,13 @@ type Props = {
   plainID: string;
   projectTypeName: string;
   setIsAddNewShowing: Function;
-  projects: Project[];
+
   setProjects: Function;
 };
 
 export default function NewProjectModal({
   plainID,
-  projects,
+
   projectTypeName,
   setIsAddNewShowing,
   setProjects,
@@ -25,9 +25,11 @@ export default function NewProjectModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let newObj = {
-      projectTitle: projectDesc,
+      projectTitle: projectTitle,
       projectDesc: projectDesc,
     };
+
+    //Optimistic rendering of new project
     setProjects((curr: any) => {
       let newArr = [...curr, newObj];
 
@@ -36,7 +38,7 @@ export default function NewProjectModal({
 
     setIsAddNewShowing(false);
 
-    // send off to mongo
+    //Sends the new project off to DB
     try {
       const res = await fetch('api/addProject', {
         method: 'POST',
@@ -79,7 +81,7 @@ export default function NewProjectModal({
             name="project-description"
             id="project-description"
           />
-          <button type="submit" className="border-solid bg-green-200 mt-3 p-1">
+          <button type="submit" className="border-solid bg-green-400 mt-3 p-1">
             Add Project
           </button>
         </form>

@@ -27,7 +27,7 @@ export default function Navbar() {
             </a>
             <a
               href="/signup"
-              className="bg-blue-300 pl-1 pr-1 hover:border-b-2 border-red-400 h-6 "
+              className="bg-blue-400 pl-1 pr-1 hover:border-b-2 border-red-400 h-6 "
             >
               Sign Up
             </a>
