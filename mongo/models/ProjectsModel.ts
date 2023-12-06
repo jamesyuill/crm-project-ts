@@ -2,7 +2,13 @@ import mongoose, { Schema, SchemaTypes, models } from 'mongoose';
 
 const schema = new Schema({
   projectTypeName: { type: String, required: true },
-  projects: { type: Array, default: [] },
+  projects: [
+    {
+      projectTitle: { type: String },
+      projectDesc: { type: String },
+      projectImages: { type: Array, default: [] },
+    },
+  ],
 });
 
 const ProjectType =

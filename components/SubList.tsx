@@ -3,7 +3,6 @@
 import ProjectProps from '@/types/ProjectProps';
 import React from 'react';
 import { IoTrashBinSharp } from 'react-icons/io5';
-
 import Todos from './Todos';
 import { useRouter } from 'next/navigation';
 
