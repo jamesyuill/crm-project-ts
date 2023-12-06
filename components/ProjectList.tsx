@@ -1,11 +1,18 @@
-import React from 'react';
-import getProjectTypes from '@/utils/getProjectTypes';
+'use client';
+import React, { useEffect, useState } from 'react';
 import SubList from './SubList';
 import ProjectProps from '@/types/ProjectProps';
 import NewSublistButton from './NewSublistButton';
 
-export default async function ProjectList() {
-  const projectTypes = await getProjectTypes();
+type Props = {
+  projectTypes: ProjectProps[];
+};
+
+export default function ProjectList({ projectTypes }: Props) {
+  const [projectTypesControlled, setProjectTypesControlled] =
+    useState(projectTypes);
+
+  useEffect(() => {}, [projectTypesControlled]);
 
   return (
     <div className="flex gap-2 ml-2">
@@ -20,7 +27,7 @@ export default async function ProjectList() {
         );
       })}
 
-      <NewSublistButton />
+      <NewSublistButton setProjectTypesControlled={setProjectTypesControlled} />
     </div>
   );
 }

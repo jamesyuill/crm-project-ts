@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import NewSublistModal from './NewSublistModal';
 
-export default function NewSublistButton() {
+type Props = {
+  setProjectTypesControlled: Function;
+};
+
+export default function NewSublistButton({ setProjectTypesControlled }: Props) {
   const [isAddNewSublistShowing, setIsAddNewSublistShowing] = useState(false);
 
   const handleClick = (e: React.SyntheticEvent) => {
@@ -24,6 +28,7 @@ export default function NewSublistButton() {
 
       {isAddNewSublistShowing && (
         <NewSublistModal
+          setProjectTypesControlled={setProjectTypesControlled}
           setIsAddNewSublistShowing={setIsAddNewSublistShowing}
         />
       )}

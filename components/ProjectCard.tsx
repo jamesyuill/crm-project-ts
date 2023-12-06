@@ -19,6 +19,7 @@ export default function ProjectCard({
 }: Props) {
   const deleteProject = async () => {
     setIsCardShowing(false);
+
     //optimistically remove from array
     setProjects((curr: []) => {
       return curr.filter(

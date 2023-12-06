@@ -7,13 +7,11 @@ type Props = {
   plainID: string;
   projectTypeName: string;
   setIsAddNewShowing: Function;
-
   setProjects: Function;
 };
 
 export default function NewProjectModal({
   plainID,
-
   projectTypeName,
   setIsAddNewShowing,
   setProjects,
@@ -28,11 +26,11 @@ export default function NewProjectModal({
     };
 
     //Optimistic rendering of new project
-    setProjects((curr: any) => {
-      let newArr = [...curr, newObj];
+    // setProjects((curr: any) => {
+    //   let newArr = [...curr, newObj];
 
-      return newArr;
-    });
+    //   return newArr;
+    // });
 
     setIsAddNewShowing(false);
 

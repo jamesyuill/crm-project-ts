@@ -17,11 +17,9 @@ export default function Todos({
     projectDesc: '',
     projectImages: [],
   });
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(parsedProjects);
 
-  useEffect(() => {
-    setProjects(parsedProjects);
-  }, []);
+  useEffect(() => {}, [projects]);
 
   const handleClick = (item: Project) => {
     setIsCardShowing(true);

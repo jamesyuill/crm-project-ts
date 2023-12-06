@@ -6,12 +6,20 @@ import { useRouter } from 'next/navigation';
 
 type Props = {
   setIsAddNewSublistShowing: Function;
+  setProjectTypesControlled: Function;
 };
 
-export default function NewSublistModal({ setIsAddNewSublistShowing }: Props) {
+export default function NewSublistModal({
+  setIsAddNewSublistShowing,
+  setProjectTypesControlled,
+}: Props) {
   const [newProjectType, setNewProjectType] = useState('');
   const router = useRouter();
   const handleSubmit = async () => {
+    setProjectTypesControlled((curr: []) => {
+      return [...curr, { projectTypeName: newProjectType }];
+    });
+
     try {
       const res = await fetch('api/addSublist', {
         method: 'POST',
@@ -19,7 +27,7 @@ export default function NewSublistModal({ setIsAddNewSublistShowing }: Props) {
         body: JSON.stringify({ newProjectType }),
       });
 
-      if (res.ok) router.refresh();
+      // if (res.ok) router.refresh();
     } catch (error) {
       console.log('An error occured posting new category', error);
     }
