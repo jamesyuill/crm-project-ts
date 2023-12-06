@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   setIsAddNewSublistShowing: Function;
@@ -9,12 +10,23 @@ type Props = {
 
 export default function NewSublistModal({ setIsAddNewSublistShowing }: Props) {
   const [newProjectType, setNewProjectType] = useState('');
+  const router = useRouter();
+  const handleSubmit = async () => {
+    try {
+      const res = await fetch('api/addSublist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newProjectType }),
+      });
 
-  const handleSubmit = () => {
+      if (res.ok) router.refresh();
+    } catch (error) {
+      console.log('An error occured posting new category', error);
+    }
     setIsAddNewSublistShowing(false);
   };
 
-  const handleClick = () => {
+  const handleClose = () => {
     setIsAddNewSublistShowing(false);
   };
 
@@ -25,7 +37,7 @@ export default function NewSublistModal({ setIsAddNewSublistShowing }: Props) {
     >
       <div className="bg-white flex flex-col gap-2 w-[50%] h-[50%] p-3 shadow-md border-[1px] border-slate-400 rounded">
         <div
-          onClick={handleClick}
+          onClick={handleClose}
           className="flex justify-end w-[100%] p-1 cursor-pointer"
         >
           <IoMdClose size={20} />
