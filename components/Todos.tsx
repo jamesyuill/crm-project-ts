@@ -39,7 +39,7 @@ export default function Todos({
           return (
             <div
               onClick={() => handleClick(item)}
-              className=" shadow-md border-[1px] border-slate-400 rounded p-1 cursor-pointer"
+              className=" shadow-md border-[1px] border-blue-400 rounded p-1 cursor-pointer"
               key={item.projectTitle}
             >
               {item.projectTitle}

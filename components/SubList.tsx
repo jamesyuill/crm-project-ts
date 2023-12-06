@@ -31,7 +31,7 @@ export default function SubList({
   };
 
   return (
-    <section className="border-2 border-slate-300 min-w-[250px] p-3  h-fit">
+    <section className="border-2 border-blue-300 min-w-[250px] rounded p-3  h-fit">
       <div className="flex justify-between">
         <h1 className="font-semibold">{projectTypeName}</h1>
         <div
@@ -39,7 +39,7 @@ export default function SubList({
           onClick={handleDelete}
           className="cursor-pointer"
         >
-          <IoTrashBinSharp size={20} color={'coral'} />
+          <IoTrashBinSharp size={20} color={'#f87171'} />
         </div>
       </div>
 

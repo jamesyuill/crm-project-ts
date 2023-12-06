@@ -26,7 +26,7 @@ export default function NewProjectButton({
     <>
       <div
         onClick={handleClick}
-        className="flex shadow-md border-[1px] border-slate-400 rounded p-1 justify-center cursor-pointer"
+        className="flex shadow-md border-[1px] border-blue-400 rounded p-1 justify-center cursor-pointer"
       >
         <IoMdAdd size={20} />
       </div>

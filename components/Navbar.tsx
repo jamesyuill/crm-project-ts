@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <div className="flex flex-row justify-between items-center h-15 w-[100%] min-w-[350px] p-5 bg-blue-200/60">
-      <Link href="/" id="logo">
+      <Link href="/" id="logo" className="font-semibold text-lg">
         Project Todo
       </Link>
       <nav className="flex flex-row items-center gap-5">

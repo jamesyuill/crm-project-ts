@@ -44,23 +44,36 @@ export default function ProjectCard({
       id="container-background"
       className="absolute top-0 left-0 w-screen h-screen z-1 flex flex col  justify-center items-center bg-slate-600/60"
     >
-      <div className="bg-white flex flex-col gap-2 w-[50%] h-[50%] p-3 shadow-md border-[1px] border-slate-400 rounded">
+      <div className="bg-white flex flex-col gap-2 w-[50%] h-[50%] p-3 shadow-md border-[1px] border-slate-400 rounded bg-blue-100">
         <div
-          onClick={() => setIsCardShowing(false)}
-          className="flex justify-end w-[100%] p-1 cursor-pointer"
+          id="box-lining"
+          className=" p-1 border-[1px] border-zinc-200 h-[100%] rounded bg-white"
         >
-          <IoMdClose size={20} />
-        </div>
-        <h2 className="font-medium">{projectTypeName}</h2>
-        <div className="flex flex-col gap-2 mt-2">
-          <h2>{cardContents.projectTitle}</h2>
-          <p>{cardContents.projectDesc}</p>
-          <button
-            onClick={deleteProject}
-            className="border-solid bg-red-400 mt-3 p-1 text-white"
-          >
-            Delete
-          </button>
+          <div className="flex justify-between">
+            <h2 className="p-1">Category: {projectTypeName}</h2>
+            <div
+              onClick={() => setIsCardShowing(false)}
+              className="p-1 cursor-pointer"
+            >
+              <IoMdClose size={20} />
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 mt-2 h-[87%]">
+            <div className="flex flex-row gap-2 p-1">
+              <h2>Project title: </h2>
+              <p>{cardContents.projectTitle}</p>
+            </div>
+            <h2 className="p-1">More info:</h2>
+            <div className=" border-y-[1px] border-zinc-300 p-3 flex-grow">
+              <p className="text-sm">{cardContents.projectDesc}</p>
+            </div>
+            <button
+              onClick={deleteProject}
+              className="border-solid bg-red-400 mt-3 p-1 text-white "
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

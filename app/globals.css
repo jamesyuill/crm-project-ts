@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(
+    0deg,
+    rgba(191, 219, 254, 0.783389729299363) 0%,
+    rgba(191, 219, 254, 0.27702030254777066) 100%
+  );
+}
