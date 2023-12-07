@@ -13,14 +13,11 @@ export default function NewSublistButton({ setProjectTypesControlled }: Props) {
   const handleClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setIsAddNewSublistShowing(true);
-    //need state to show modal
-    //optimistically render new sublist
-    //need a new route for creating a new sublist
   };
 
   return (
     <>
-      <section className="border-2 border-blue-300 p-3 min-w-[250px] h-fit cursor-pointer hover:bg-blue-100/70">
+      <section className="border-2 border-blue-300 p-3 min-w-[250px] h-fit cursor-pointer hover:bg-blue-100/70 rounded">
         <div onClick={handleClick} className="flex justify-center">
           <IoMdAdd size={20} />
         </div>
