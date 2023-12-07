@@ -15,7 +15,7 @@ export default function ProjectList({ projectTypes }: Props) {
   useEffect(() => {}, [projectTypesControlled]);
 
   return (
-    <div className="flex gap-2 ml-2">
+    <div className="flex flex-col pb-[120px] sm:flex-row gap-2 m-2 ">
       {projectTypes?.map(({ _id, projectTypeName, projects }: ProjectProps) => {
         return (
           <SubList

@@ -31,7 +31,7 @@ export default function SubList({
   };
 
   return (
-    <section className="border-2 border-blue-300 min-w-[250px] rounded p-3  h-fit">
+    <section className="border-2 border-blue-300 rounded p-3  w-[99%] h-fit sm:min-w-[250px]">
       <div className="flex justify-between">
         <div>
           <h1 className="font-semibold">{projectTypeName}</h1>
