@@ -10,7 +10,7 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <div className="flex flex-row justify-between items-center h-15 w-[100%] min-w-[350px] p-5 bg-blue-200/60">
+    <div className="flex flex-row justify-between items-center h-15 w-[100%] min-w-[350px] p-5 bg-blue-300/60">
       <Link href="/" id="logo" className="font-semibold text-lg">
         Project Todo
       </Link>

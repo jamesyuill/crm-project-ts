@@ -1,7 +1,7 @@
 'use client';
 
 import ProjectProps from '@/types/ProjectProps';
-import React from 'react';
+import React, { useState } from 'react';
 import { IoTrashBinSharp } from 'react-icons/io5';
 import Todos from './Todos';
 import { useRouter } from 'next/navigation';
@@ -33,7 +33,9 @@ export default function SubList({
   return (
     <section className="border-2 border-blue-300 min-w-[250px] rounded p-3  h-fit">
       <div className="flex justify-between">
-        <h1 className="font-semibold">{projectTypeName}</h1>
+        <div>
+          <h1 className="font-semibold">{projectTypeName}</h1>
+        </div>
         <div
           id="delete-sublist"
           onClick={handleDelete}

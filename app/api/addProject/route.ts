@@ -17,8 +17,10 @@ export async function POST(req: NextRequest) {
       $push: {
         projects: projectWithId,
       },
-    }
+    },
+    { new: true }
   );
+  const newProject = res.projects[res.projects.length - 1];
 
-  return Response.json(res);
+  return Response.json(newProject);
 }

@@ -44,7 +44,7 @@ export default function ProjectCard({
       id="container-background"
       className="absolute top-0 left-0 w-screen h-screen z-1 flex flex col  justify-center items-center bg-slate-600/60"
     >
-      <div className="bg-white flex flex-col gap-2 w-[50%] h-[50%] p-3 shadow-md border-[1px] border-slate-400 rounded bg-blue-100">
+      <div className="bg-white flex flex-col gap-2 w-[40%] h-[50%] p-3 shadow-md border-[1px] border-slate-400 rounded bg-blue-100">
         <div
           id="box-lining"
           className=" p-1 border-[1px] border-zinc-200 h-[100%] rounded bg-white"
@@ -53,7 +53,7 @@ export default function ProjectCard({
             <h2 className="p-1">Category: {projectTypeName}</h2>
             <div
               onClick={() => setIsCardShowing(false)}
-              className="p-1 cursor-pointer"
+              className="p-1 cursor-pointer hover:drop-shadow-lg"
             >
               <IoMdClose size={20} />
             </div>
@@ -69,7 +69,7 @@ export default function ProjectCard({
             </div>
             <button
               onClick={deleteProject}
-              className="border-solid bg-red-400 mt-3 p-1 text-white "
+              className="border-solid bg-red-400 mt-3 p-1 text-white hover:bg-red-300"
             >
               Delete
             </button>
