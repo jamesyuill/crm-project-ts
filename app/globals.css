@@ -13,6 +13,11 @@ body {
   background: linear-gradient(
     0deg,
     rgba(191, 219, 254, 0.783389729299363) 0%,
-    rgba(191, 219, 254, 0.27702030254777066) 100%
+    rgba(191, 219, 254, 0.27702030254777066) 50%
   );
+}
+
+textarea {
+  resize: none;
+  height: 150px;
 }
