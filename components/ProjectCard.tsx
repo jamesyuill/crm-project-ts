@@ -8,6 +8,7 @@ interface Props {
   projectTypeName: string;
   cardContents: Project;
   setIsCardShowing: Function;
+  setCardContents: Function;
 }
 
 export default function ProjectCard({
@@ -16,6 +17,7 @@ export default function ProjectCard({
   projectTypeName,
   setIsCardShowing,
   cardContents,
+  setCardContents,
 }: Props) {
   const deleteProject = async () => {
     setIsCardShowing(false);
@@ -39,6 +41,44 @@ export default function ProjectCard({
     }
   };
 
+  const changeContents = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    setProjects((curr: []) => {
+      let amended = curr.map((project: Project) => {
+        if (project._id === cardContents._id) {
+          project[field] = e.target.value;
+          return project;
+        }
+        return project;
+      });
+      return amended;
+    });
+    setCardContents((curr: Project) => {
+      let newObj = {
+        ...curr,
+        [field]: e.target.value,
+      };
+      return newObj;
+    });
+  };
+
+  const sendChanges = async () => {
+    try {
+      const res = await fetch('api/updateProject', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plainID, cardContents }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to update');
+      }
+    } catch (error) {
+      console.log('There was an error updating the project', error);
+    }
+  };
   return (
     <div
       id="container-background"
@@ -61,11 +101,20 @@ export default function ProjectCard({
           <div className="flex flex-col gap-2 mt-2 h-[87%]">
             <div className="flex flex-row gap-2 p-1">
               <h2>Project title: </h2>
-              <p>{cardContents.projectTitle}</p>
+              <input
+                value={cardContents.projectTitle}
+                onChange={(e) => changeContents(e, 'projectTitle')}
+                onBlur={sendChanges}
+              />
             </div>
             <h2 className="p-1">More info:</h2>
             <div className=" border-y-[1px] border-zinc-300 p-3 flex-grow">
-              <p className="text-sm">{cardContents.projectDesc}</p>
+              <textarea
+                value={cardContents.projectDesc}
+                onChange={(e) => changeContents(e, 'projectDesc')}
+                onBlur={sendChanges}
+                className="text-sm"
+              />
             </div>
             <button
               onClick={deleteProject}

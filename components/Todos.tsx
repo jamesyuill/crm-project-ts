@@ -60,6 +60,7 @@ export default function Todos({
           projectTypeName={projectTypeName}
           setIsCardShowing={setIsCardShowing}
           cardContents={cardContents}
+          setCardContents={setCardContents}
         />
       )}
     </>
