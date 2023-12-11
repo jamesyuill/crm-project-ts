@@ -23,43 +23,43 @@ export default function NewProjectModal({
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
 
   useEffect(() => {
-    const urlPattern =
-      /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
     //validate title / desc / image
-    if (projectTitle === '' || !urlPattern.test(projectImage0)) {
-      setAddButtonDisabled(true);
-    } else {
+    if (projectTitle !== '') {
       setAddButtonDisabled(false);
     }
-  }, [projectTitle, projectImage0]);
+  }, [projectTitle]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    let newObj = {
-      projectTitle: projectTitle,
-      projectDesc: projectDesc,
-      projectImages: [projectImage0],
-    };
+    const urlPattern =
+      /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if (urlPattern.test(projectImage0)) {
+      e.preventDefault();
+      let newObj = {
+        projectTitle: projectTitle,
+        projectDesc: projectDesc,
+        projectImages: [projectImage0],
+      };
 
-    //Optimistic rendering of new project
+      //Sends the new project off to DB
+      try {
+        const res = await fetch('api/addProject', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plainID, newObj }),
+        });
+        const returnedProject = await res.json();
 
-    setIsAddNewShowing(false);
+        setProjects((curr: any) => {
+          let newArr = [...curr, returnedProject];
 
-    //Sends the new project off to DB
-    try {
-      const res = await fetch('api/addProject', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plainID, newObj }),
-      });
-      const returnedProject = await res.json();
-
-      setProjects((curr: any) => {
-        let newArr = [...curr, returnedProject];
-
-        return newArr;
-      });
-    } catch (error) {}
+          return newArr;
+        });
+        setIsAddNewShowing(false);
+      } catch (error) {}
+    } else {
+      e.preventDefault();
+      setError('Image URL not valid');
+    }
   };
 
   return (
@@ -110,12 +110,16 @@ export default function NewProjectModal({
               <input
                 id="image-url-input-1"
                 type="text"
-                placeholder="Image url"
+                placeholder="https://www..."
                 onChange={(e) => setProjectImages0(e.target.value)}
                 className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
               />
             </div>
-            {error && <p>{error}</p>}
+            {error && (
+              <p className="flex bg-red-400 text-white justify-center p-1">
+                {error}
+              </p>
+            )}
             <button
               type="submit"
               className={

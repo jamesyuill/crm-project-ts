@@ -15,6 +15,5 @@ export async function DELETE(req: NextRequest) {
     }
   );
 
-  console.log(res);
   return Response.json(res);
 }
