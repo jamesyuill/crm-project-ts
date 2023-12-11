@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-// import { ObjectId } from 'bson';
 
 type Props = {
   plainID: string;
@@ -19,11 +18,27 @@ export default function NewProjectModal({
 }: Props) {
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
+  const [projectImage0, setProjectImages0] = useState('');
+  const [error, setError] = useState('');
+  const [addButtonDisabled, setAddButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const urlPattern =
+      /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    //validate title / desc / image
+    if (projectTitle === '' || !urlPattern.test(projectImage0)) {
+      setAddButtonDisabled(true);
+    } else {
+      setAddButtonDisabled(false);
+    }
+  }, [projectTitle, projectImage0]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let newObj = {
       projectTitle: projectTitle,
       projectDesc: projectDesc,
+      projectImages: [projectImage0],
     };
 
     //Optimistic rendering of new project
@@ -90,9 +105,25 @@ export default function NewProjectModal({
                 id="project-description"
               />
             </div>
+            <div id="add-image-url" className="flex flex-col gap-2">
+              <label htmlFor="image-url-input">Add a photo: </label>
+              <input
+                id="image-url-input-1"
+                type="text"
+                placeholder="Image url"
+                onChange={(e) => setProjectImages0(e.target.value)}
+                className="border-solid border-[1px] border-slate-300 p-[0.2rem]"
+              />
+            </div>
+            {error && <p>{error}</p>}
             <button
               type="submit"
-              className="border-solid bg-green-400 mt-3 p-1 hover:bg-green-300"
+              className={
+                addButtonDisabled
+                  ? 'border-solid bg-zinc-400 mt-3 p-1'
+                  : 'border-solid bg-green-400 mt-3 p-1 hover:bg-green-300'
+              }
+              disabled={addButtonDisabled}
             >
               Add Project
             </button>

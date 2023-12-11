@@ -1,6 +1,8 @@
 import React from 'react';
 import Project from '@/types/Project';
 import { IoMdClose } from 'react-icons/io';
+import Image from 'next/image';
+import MiniImageDisplay from './MiniImageDisplay';
 
 interface Props {
   plainID: string;
@@ -111,10 +113,18 @@ export default function ProjectCard({
             <div className=" border-y-[1px] border-zinc-300 p-3 flex-grow">
               <textarea
                 value={cardContents.projectDesc}
-                onChange={(e) => changeContents(e, 'projectDesc')}
+                onChange={(e: React.ChangeEvent<{ value: string }>) =>
+                  changeContents(e, 'projectDesc')
+                }
                 onBlur={sendChanges}
                 className="text-sm"
               />
+            </div>
+
+            <div id="images">
+              <h2>Images:</h2>
+
+              <MiniImageDisplay cardContents={cardContents} />
             </div>
             <button
               onClick={deleteProject}
