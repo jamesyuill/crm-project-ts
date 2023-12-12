@@ -5,12 +5,22 @@ import React, { useState } from 'react';
 import { IoTrashBinSharp } from 'react-icons/io5';
 import Todos from './Todos';
 import { useRouter } from 'next/navigation';
+import Project from '@/types/Project';
+import { DraggableProvided } from 'react-beautiful-dnd';
+
+type Props = {
+  projects: Project;
+  _id: string;
+  projectTypeName: string;
+  provided: DraggableProvided;
+};
 
 export default function SubList({
   projects,
   _id,
   projectTypeName,
-}: ProjectProps) {
+  provided,
+}: Props) {
   const router = useRouter();
   const stringify = JSON.stringify(projects);
   const parsedProjects = JSON.parse(stringify);
@@ -31,7 +41,12 @@ export default function SubList({
   };
 
   return (
-    <section className="border-2 border-blue-300 rounded p-3  w-[99%] h-fit sm:min-w-[250px] w-[99%]">
+    <section
+      {...provided.dragHandleProps}
+      {...provided.draggableProps}
+      ref={provided.innerRef}
+      className="border-2 border-blue-300 rounded p-3  w-[300px] h-fit"
+    >
       <div className="flex justify-between">
         <div>
           <h1 className="font-semibold">{projectTypeName}</h1>

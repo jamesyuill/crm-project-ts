@@ -1,7 +1,6 @@
 import React from 'react';
 import Project from '@/types/Project';
 import { IoMdClose } from 'react-icons/io';
-import Image from 'next/image';
 import MiniImageDisplay from './MiniImageDisplay';
 
 interface Props {

@@ -17,7 +17,7 @@ export default function NewSublistButton({ setProjectTypesControlled }: Props) {
 
   return (
     <>
-      <section className="border-2 border-blue-300 p-3 min-w-[250px] h-fit cursor-pointer hover:bg-blue-100/70 rounded sm:min-w-[250px] w-[99%]">
+      <section className="border-2 border-blue-300 p-3 w-[300px] h-fit cursor-pointer hover:bg-blue-100/70 rounded sm:w-[300px]">
         <div onClick={handleClick} className="flex justify-center">
           <IoMdAdd size={20} />
         </div>
