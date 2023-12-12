@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SubList from './SubList';
 import ProjectProps from '@/types/ProjectProps';
 import NewSublistButton from './NewSublistButton';
@@ -12,8 +12,6 @@ type Props = {
 export default function ProjectList({ projectTypes }: Props) {
   const [projectTypesControlled, setProjectTypesControlled] =
     useState(projectTypes);
-
-  useEffect(() => {}, [projectTypesControlled]);
 
   const OnDragEndHandler = (results) => {
     const { source, destination, type } = results;
@@ -37,17 +35,23 @@ export default function ProjectList({ projectTypes }: Props) {
       return setProjectTypesControlled(reorderedCats);
     }
 
-    // const catSourceIndex = projectTypesControlled.findIndex(
-    //   (item) => item._id === source.droppableId
-    // );
-    // const catDestinationIndex = projectTypesControlled.findIndex(
-    //   (item) => item._id === destination.droppableId
-    // );
-    // const newSourceItems = [...projectTypesControlled[catSourceIndex].projects];
-    // const newDestinationItems =
-    //   source.droppableId !== destination.droppableId
-    //     ? [...projectTypesControlled[catDestinationIndex].projects]
-    //     : newSourceItems;
+    // optimistically render if project is within the same cat/sublist
+    const sourceId = source.droppableId;
+    const destinationId = destination.droppableId;
+    const sourceIndex = source.index;
+    const destinationIndex = destination.index;
+    if (sourceId === destinationId) {
+      const reordered = [...projectTypesControlled];
+      const pTypeIndex = reordered.findIndex(
+        (pType) => pType._id === destinationId
+      );
+      const projectsToReorder = reordered[pTypeIndex].projects;
+      const [removedProject] = projectsToReorder?.splice(sourceIndex, 1);
+      // const removedStringify = JSON.stringify(removedProject);
+      // const removedParsed = JSON.parse(removedStringify);
+      projectsToReorder?.splice(destinationIndex, 0, removedProject);
+      return setProjectTypesControlled(reordered);
+    }
   };
 
   return (
@@ -61,6 +65,8 @@ export default function ProjectList({ projectTypes }: Props) {
           >
             {projectTypesControlled.map(
               ({ _id, projectTypeName, projects }: ProjectProps, index) => {
+                // const stringify = JSON.stringify(projects);
+                // const parsedProjects = JSON.parse(stringify);
                 return (
                   <Draggable draggableId={_id} key={_id} index={index}>
                     {(provided) => (

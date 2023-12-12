@@ -6,11 +6,7 @@ import Project from '@/types/Project';
 import AddProjectButton from './AddProjectButton';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
-export default function Todos({
-  plainID,
-  projectTypeName,
-  parsedProjects,
-}: any) {
+export default function Todos({ plainID, projectTypeName, projectsCont }: any) {
   const [isCardShowing, setIsCardShowing] = useState(false);
   const [cardContents, setCardContents] = useState<Project>({
     _id: '',
@@ -18,7 +14,7 @@ export default function Todos({
     projectDesc: '',
     projectImages: [],
   });
-  const [projects, setProjects] = useState(parsedProjects);
+  const [projects, setProjects] = useState(projectsCont);
 
   useEffect(() => {}, [projects]);
 
@@ -42,7 +38,7 @@ export default function Todos({
             ref={provided.innerRef}
             className="flex flex-col gap-3 mt-4"
           >
-            {projects.map((item: Project, index) => (
+            {projects.map((item: Project, index: number) => (
               <Draggable draggableId={item._id} index={index} key={item._id}>
                 {(provided) => (
                   <div
@@ -50,7 +46,7 @@ export default function Todos({
                     {...provided.draggableProps}
                     ref={provided.innerRef}
                     onClick={() => handleClick(item)}
-                    className=" shadow-md border-[1px] border-blue-400 rounded p-1 cursor-pointer hover:bg-blue-100/70"
+                    className=" shadow-md border-[1px] border-blue-400 rounded p-1 justify between cursor-pointer hover:bg-blue-100/70"
                     key={item.projectTitle}
                   >
                     {item.projectTitle}
@@ -58,12 +54,13 @@ export default function Todos({
                 )}
               </Draggable>
             ))}
+            {provided.placeholder}
             <AddProjectButton
               plainID={plainID}
               projectTypeName={projectTypeName}
               setProjects={setProjects}
             />
-            {provided.placeholder}
+            {/* {provided.placeholder} */}
           </div>
         )}
       </Droppable>

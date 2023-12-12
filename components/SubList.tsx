@@ -1,12 +1,12 @@
 'use client';
 
-import ProjectProps from '@/types/ProjectProps';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoTrashBinSharp } from 'react-icons/io5';
 import Todos from './Todos';
 import { useRouter } from 'next/navigation';
 import Project from '@/types/Project';
 import { DraggableProvided } from 'react-beautiful-dnd';
+import ProjectProps from '@/types/ProjectProps';
 
 type Props = {
   projects: Project;
@@ -22,9 +22,10 @@ export default function SubList({
   provided,
 }: Props) {
   const router = useRouter();
-  const stringify = JSON.stringify(projects);
-  const parsedProjects = JSON.parse(stringify);
   const plainID = JSON.parse(JSON.stringify(_id));
+  // const stringify = JSON.stringify(projects);
+  // const parsedProjects = JSON.parse(stringify);
+  const [projectsCont, setProjectsCont] = useState(projects);
 
   const handleDelete = async () => {
     try {
@@ -60,11 +61,11 @@ export default function SubList({
         </div>
       </div>
 
-      {projects && (
+      {projectsCont && (
         <Todos
           plainID={plainID}
           projectTypeName={projectTypeName}
-          parsedProjects={parsedProjects}
+          projectsCont={projectsCont}
         />
       )}
     </section>
