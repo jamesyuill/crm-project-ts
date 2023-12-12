@@ -36,6 +36,18 @@ export default function ProjectList({ projectTypes }: Props) {
 
       return setProjectTypesControlled(reorderedCats);
     }
+
+    // const catSourceIndex = projectTypesControlled.findIndex(
+    //   (item) => item._id === source.droppableId
+    // );
+    // const catDestinationIndex = projectTypesControlled.findIndex(
+    //   (item) => item._id === destination.droppableId
+    // );
+    // const newSourceItems = [...projectTypesControlled[catSourceIndex].projects];
+    // const newDestinationItems =
+    //   source.droppableId !== destination.droppableId
+    //     ? [...projectTypesControlled[catDestinationIndex].projects]
+    //     : newSourceItems;
   };
 
   return (
