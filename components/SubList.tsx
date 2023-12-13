@@ -5,7 +5,7 @@ import { IoTrashBinSharp } from 'react-icons/io5';
 import Todos from './Todos';
 import { useRouter } from 'next/navigation';
 import Project from '@/types/Project';
-import { DraggableProvided } from 'react-beautiful-dnd';
+import { DraggableProvided } from '@hello-pangea/dnd';
 import ProjectProps from '@/types/ProjectProps';
 
 type Props = {

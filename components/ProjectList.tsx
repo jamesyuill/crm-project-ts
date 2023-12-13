@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import SubList from './SubList';
 import ProjectProps from '@/types/ProjectProps';
 import NewSublistButton from './NewSublistButton';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 
 type Props = {
   projectTypes: ProjectProps[];
@@ -47,9 +47,29 @@ export default function ProjectList({ projectTypes }: Props) {
       );
       const projectsToReorder = reordered[pTypeIndex].projects;
       const [removedProject] = projectsToReorder?.splice(sourceIndex, 1);
-      // const removedStringify = JSON.stringify(removedProject);
-      // const removedParsed = JSON.parse(removedStringify);
+
       projectsToReorder?.splice(destinationIndex, 0, removedProject);
+      return setProjectTypesControlled(reordered);
+    }
+
+    // optimistically render if project is NOT in the same cat/sublist
+
+    if (sourceId !== destinationId) {
+      const reordered = [...projectTypesControlled];
+      //find the index of the source pType
+      const pTypeSourceIndex = reordered.findIndex(
+        (pType) => pType._id === sourceId
+      );
+      //remove the project from it's original array
+      const projectsToReorder = reordered[pTypeSourceIndex].projects;
+      const [removedProject] = projectsToReorder?.splice(sourceIndex, 1);
+      //find the index of the destination pType
+      const pTypeDestIndex = reordered.findIndex(
+        (pType) => pType._id === destinationId
+      );
+      const projectsToInsertInto = reordered[pTypeDestIndex].projects;
+      projectsToInsertInto?.splice(destinationIndex, 0, removedProject);
+      //insert project into the correct position
       return setProjectTypesControlled(reordered);
     }
   };

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ProjectCard from './ProjectCard';
 import Project from '@/types/Project';
 import AddProjectButton from './AddProjectButton';
-import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from '@hello-pangea/dnd';
 
 export default function Todos({ plainID, projectTypeName, projectsCont }: any) {
   const [isCardShowing, setIsCardShowing] = useState(false);
