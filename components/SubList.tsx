@@ -49,11 +49,13 @@ export default function SubList({
       {...provided.dragHandleProps}
       {...provided.draggableProps}
       ref={provided.innerRef}
-      className="border-2 border-blue-300 rounded p-3  min-w-[280px] h-fit bg-blue-100/30 shadow-lg"
+      className="border-2 border-blue-300 rounded-lg p-3  min-w-[280px] h-fit bg-blue-100/30 shadow-lg"
     >
       <div className="flex justify-between">
         <div>
-          <h1 className="font-semibold">{projectTypeName}</h1>
+          <h1 className="font-fredoka font-medium text-lg">
+            {projectTypeName}
+          </h1>
         </div>
         <div
           id="delete-sublist"
