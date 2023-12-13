@@ -53,7 +53,9 @@ export default function SubList({
     >
       <div className="flex justify-between">
         <div>
-          <h1 className="font-semibold">{projectTypeName}</h1>
+          <h1 className="font-fredoka font-medium text-lg">
+            {projectTypeName}
+          </h1>
         </div>
         <div
           id="delete-sublist"
