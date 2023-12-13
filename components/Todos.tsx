@@ -46,7 +46,7 @@ export default function Todos({ plainID, projectTypeName, projectsCont }: any) {
                     {...provided.draggableProps}
                     ref={provided.innerRef}
                     onClick={() => handleClick(item)}
-                    className=" shadow-md border-[1px] border-blue-400 rounded p-1 justify between cursor-pointer hover:bg-blue-100/70 font-fredoka font-{400}"
+                    className=" shadow-md border-[1px] border-blue-300 rounded p-1 justify between cursor-pointer hover:bg-blue-100/70 font-fredoka font-{400}"
                     key={item.projectTitle}
                   >
                     {item.projectTitle}
