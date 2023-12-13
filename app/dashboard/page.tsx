@@ -9,7 +9,6 @@ export default async function Dashboard() {
     headers: { 'Content-Type': 'application/json' },
     cache: 'no-store',
   });
-
   projectTypes = await res.json();
 
   return (

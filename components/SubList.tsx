@@ -1,20 +1,30 @@
 'use client';
 
-import ProjectProps from '@/types/ProjectProps';
 import React, { useState } from 'react';
 import { IoTrashBinSharp } from 'react-icons/io5';
 import Todos from './Todos';
-import { useRouter } from 'next/navigation';
+import Project from '@/types/Project';
+import { DraggableProvided } from '@hello-pangea/dnd';
+import ProjectProps from '@/types/ProjectProps';
+
+type Props = {
+  projects: Project;
+  _id: string;
+  projectTypeName: string;
+  provided: DraggableProvided;
+  setProjectTypesControlled: Function;
+};
 
 export default function SubList({
   projects,
   _id,
   projectTypeName,
-}: ProjectProps) {
-  const router = useRouter();
-  const stringify = JSON.stringify(projects);
-  const parsedProjects = JSON.parse(stringify);
+  provided,
+  setProjectTypesControlled,
+}: Props) {
   const plainID = JSON.parse(JSON.stringify(_id));
+
+  const [projectsCont, setProjectsCont] = useState(projects);
 
   const handleDelete = async () => {
     try {
@@ -24,14 +34,23 @@ export default function SubList({
         body: JSON.stringify({ plainID }),
       });
 
-      if (res.ok) router.refresh();
+      if (res.ok) {
+        setProjectTypesControlled((curr: ProjectProps[]) => {
+          return curr.filter((item: ProjectProps) => item._id !== plainID);
+        });
+      }
     } catch (error) {
       console.log('An error occured deleting a category', error);
     }
   };
 
   return (
-    <section className="border-2 border-blue-300 rounded p-3  w-[99%] h-fit sm:min-w-[250px] w-[99%]">
+    <section
+      {...provided.dragHandleProps}
+      {...provided.draggableProps}
+      ref={provided.innerRef}
+      className="border-2 border-blue-300 rounded p-3  min-w-[280px] h-fit bg-blue-100/30 shadow-lg"
+    >
       <div className="flex justify-between">
         <div>
           <h1 className="font-semibold">{projectTypeName}</h1>
@@ -45,11 +64,11 @@ export default function SubList({
         </div>
       </div>
 
-      {projects && (
+      {projectsCont && (
         <Todos
           plainID={plainID}
           projectTypeName={projectTypeName}
-          parsedProjects={parsedProjects}
+          projectsCont={projectsCont}
         />
       )}
     </section>

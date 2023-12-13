@@ -1,7 +1,6 @@
 import React from 'react';
 import Project from '@/types/Project';
 import { IoMdClose } from 'react-icons/io';
-import Image from 'next/image';
 import MiniImageDisplay from './MiniImageDisplay';
 
 interface Props {
@@ -86,7 +85,7 @@ export default function ProjectCard({
       id="container-background"
       className="absolute top-0 left-0 w-screen h-screen z-1 flex flex col  justify-center items-center bg-slate-600/60"
     >
-      <div className="w-[90%] h-[90%] bg-blue-100 flex flex-col gap-2  p-3 shadow-md border-[1px] border-slate-400 rounded sm:w-[400px] h-[400px]">
+      <div className="w-[90%] bg-blue-100 flex flex-col gap-2  p-3 shadow-md border-[1px] border-slate-400 rounded sm:w-[400px] h-[500px]">
         <div
           id="box-lining"
           className=" p-1 border-[1px] border-zinc-200 h-[100%] rounded bg-white"
