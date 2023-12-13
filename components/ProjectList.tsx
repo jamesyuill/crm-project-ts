@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 import SubList from './SubList';
 import ProjectProps from '@/types/ProjectProps';
 import NewSublistButton from './NewSublistButton';
-import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
+import {
+  DragDropContext,
+  Draggable,
+  DropResult,
+  Droppable,
+} from '@hello-pangea/dnd';
 
 type Props = {
   projectTypes: ProjectProps[];
@@ -13,7 +18,7 @@ export default function ProjectList({ projectTypes }: Props) {
   const [projectTypesControlled, setProjectTypesControlled] =
     useState(projectTypes);
 
-  const OnDragEndHandler = (results) => {
+  const OnDragEndHandler = (results: DropResult) => {
     const { source, destination, type } = results;
 
     if (!destination) return;
@@ -81,7 +86,7 @@ export default function ProjectList({ projectTypes }: Props) {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="flex flex-col pb-[120px] sm:flex-row gap-2 m-2 "
+            className="flex flex-col pb-[120px] sm:flex-row gap-4 m-2 flex-wrap"
           >
             {projectTypesControlled.map(
               ({ _id, projectTypeName, projects }: ProjectProps, index) => {
@@ -96,6 +101,7 @@ export default function ProjectList({ projectTypes }: Props) {
                         _id={_id}
                         projectTypeName={projectTypeName}
                         projects={projects}
+                        setProjectTypesControlled={setProjectTypesControlled}
                       />
                     )}
                   </Draggable>
