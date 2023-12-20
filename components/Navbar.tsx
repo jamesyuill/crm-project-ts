@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import Logout from './Logout';
 import NavGreeting from './NavGreeting';
 import Link from 'next/link';
+import { GiNotebook } from 'react-icons/gi';
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -14,9 +15,12 @@ export default function Navbar() {
       <Link
         href="/"
         id="logo"
-        className="drop-shadow-[0_25px_25px_rgba(0,0,0,0.50)] font-medium text-3xl font-fredoka text-blue-500"
+        className=" flex flex-row gap-3 drop-shadow-[0_25px_25px_rgba(0,0,0,0.50)] font-medium text-3xl font-fredoka text-blue-500 items-center"
       >
         Project Todo
+        <div className="mt-1">
+          <GiNotebook size={30} color={'#3b82f6'} />
+        </div>
       </Link>
       <nav className="flex flex-row items-center gap-5">
         {session ? (
