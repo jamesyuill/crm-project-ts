@@ -26,9 +26,10 @@ export default function NewProjectButton({
     <>
       <div
         onClick={handleClick}
-        className="flex shadow-md border-[1px] border-blue-400 border-dashed rounded p-1 justify-center cursor-pointer  hover:bg-blue-100/70 "
+        className="flex gap-1  rounded p-1  cursor-pointer items-center hover:bg-blue-200/70 "
       >
         <IoMdAdd size={20} />
+        <p className="text-sm font-fredoka font-{400}">Add a card</p>
       </div>
 
       {isAddNewShowing && (
